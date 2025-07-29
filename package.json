@@ -14,7 +14,8 @@
     "nodemailer": "^7.0.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sass": "^1.89.2"
+    "sass": "^1.89.2",
+    "use-debounce": "^10.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
