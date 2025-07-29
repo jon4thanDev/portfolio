@@ -1,10 +1,14 @@
 "use client";
 import styles from "./Footer.module.scss";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const router = useRouter();
+
   const scrollToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    router.replace("/");
     window.scrollTo({
       top: 0,
       behavior: "smooth",

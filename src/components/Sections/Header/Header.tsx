@@ -4,16 +4,18 @@ import { useState } from "react";
 import ThemeToggle from "../../ThemeToggle/ThemeToggle";
 import styles from "./Header.module.scss";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const router = useRouter();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    router.replace("/");
     window.scrollTo({
       top: 0,
       behavior: "smooth",
