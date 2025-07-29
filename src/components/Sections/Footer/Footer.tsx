@@ -1,5 +1,6 @@
 "use client";
 import styles from "./Footer.module.scss";
+import Image from "next/image";
 
 const Footer = () => {
   const scrollToTop = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -15,7 +16,9 @@ const Footer = () => {
       <div className={styles.container}>
         <div className={styles.content}>
           <div className={styles.section}>
-            <h3 className={styles.logo}>Portfolio</h3>
+            <h3 className={styles.logo}>
+              <Image src="/logo.png" alt="Logo" width={80} height={80} />
+            </h3>
             <p className={styles.description}>
               A passionate developer creating modern web experiences with
               cutting-edge technologies.
