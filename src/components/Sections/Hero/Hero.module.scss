@@ -367,8 +367,16 @@
 
 // Responsive design
 @media (max-width: 768px) {
+  .hero {
+    margin-top: 0;
+  }
+
+  .greetingLine {
+    font-size: var(--text-xl);
+  }
+
   .roleHighlight {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   .roleSubtitle {
@@ -402,6 +410,10 @@
 }
 
 @media (max-width: 480px) {
+  .greetingLine {
+    font-size: var(--text-lg);
+  }
+
   .roleHighlight {
     font-size: 2.5rem;
   }
