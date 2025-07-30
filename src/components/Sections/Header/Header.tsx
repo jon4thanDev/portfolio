@@ -15,11 +15,16 @@ const Header = () => {
 
   const scrollToTop = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
+    closeMenu();
     router.replace("/");
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -39,17 +44,21 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a href="#projects" className={styles.navLink}>
+              <a
+                href="#projects"
+                onClick={closeMenu}
+                className={styles.navLink}
+              >
                 Projects
               </a>
             </li>
             <li>
-              <a href="#skills" className={styles.navLink}>
+              <a href="#skills" onClick={closeMenu} className={styles.navLink}>
                 Skills
               </a>
             </li>
             <li>
-              <a href="#contact" className={styles.navLink}>
+              <a href="#contact" onClick={closeMenu} className={styles.navLink}>
                 Contact
               </a>
             </li>
