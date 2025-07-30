@@ -11,6 +11,15 @@ import {
   Send,
   Proportions,
   ExternalLink,
+  MessageSquare,
+  Smartphone,
+  Bot,
+  CreditCard,
+  Users,
+  Server,
+  BarChart3,
+  Settings,
+  Zap,
 } from "lucide-react";
 
 const Projects = () => {
@@ -19,9 +28,141 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: "Bills Payment by Core1Corp",
+      description:
+        "A bills payment system with biller management, device control, and third-party API integrations for seamless payment processing.",
+      status: "In Progress",
+      type: "Full-time",
+      role: "Junior Developer",
+      duration: "May 2024 - Present",
+      icon: "💳",
+      image: "/projects/bills-payment.jpg",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "JWT",
+        "Redis",
+        "Docker",
+        "Figma",
+        "SCSS",
+        "JavaScript",
+        "React",
+        "AWS",
+      ],
+      features: [
+        {
+          title: "Biller Management UI",
+          description:
+            "Created user interface for managing and creating biller accounts with intuitive payment workflows.",
+          icon: <CreditCard size={30} />,
+        },
+        {
+          title: "Device Management",
+          description:
+            "Developed comprehensive device management system for monitoring and controlling payment terminals.",
+          icon: <Settings size={30} />,
+        },
+        {
+          title: "Third-party API Integration",
+          description:
+            "Integrated multiple third-party APIs for payment processing, biller verification, and transaction handling.",
+          icon: <Zap size={30} />,
+        },
+        {
+          title: "Performance Optimization",
+          description:
+            "Optimized system performance through caching strategies, database queries, and frontend optimizations.",
+          icon: <Sparkles size={30} />,
+        },
+        {
+          title: "Analytics Dashboard",
+          description:
+            "Built comprehensive dashboard with charts and analytics for monitoring payment transactions and system performance.",
+          icon: <BarChart3 size={30} />,
+        },
+        {
+          title: "User Authentication",
+          description:
+            "Implemented secure user authentication system with JWT tokens and role-based access control.",
+          icon: <ShieldCheck size={30} />,
+        },
+      ],
+    },
+    {
+      id: 2,
+      title: "PESONet by Core1Corp",
+      description:
+        "A banks financial transaction system for outward and inward processing with real-time communication capabilities and secure authentication.",
+      status: "In Progress",
+      type: "Full-time",
+      role: "Junior Developer",
+      duration: "August 2024 - Present",
+      icon: "🏦",
+      image: "/projects/pesonet.png",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "JWT",
+        "Redis",
+        "Docker",
+        "Figma",
+        "SCSS",
+        "JavaScript",
+        "React",
+        "AWS",
+      ],
+      features: [
+        {
+          title: "Transaction UI",
+          description:
+            "Created user interfaces for both outward and inward transaction processing with intuitive workflows.",
+          icon: <CreditCard size={30} />,
+        },
+        {
+          title: "User Authentication",
+          description:
+            "Implemented secure user authentication system with JWT tokens and role-based access control.",
+          icon: <ShieldCheck size={30} />,
+        },
+        {
+          title: "Device Authentication",
+          description:
+            "Developed device authentication system to ensure secure access and prevent unauthorized usage.",
+          icon: <Smartphone size={30} />,
+        },
+        {
+          title: "Role-Based Access Control",
+          description:
+            "Implemented RBAC system to manage user permissions and access levels across different modules.",
+          icon: <Users size={30} />,
+        },
+        {
+          title: "Automation Processing",
+          description:
+            "Built automation systems for inward transaction processing to improve efficiency and reduce manual work.",
+          icon: <Bot size={30} />,
+        },
+        {
+          title: "Real-time Communication",
+          description:
+            "Developed real-time messaging system for client and support team communication with instant notifications.",
+          icon: <MessageSquare size={30} />,
+        },
+        {
+          title: "Environment Management",
+          description:
+            "Set up and maintained production, staging, and development environments for secure deployment and testing.",
+          icon: <Server size={30} />,
+        },
+      ],
+    },
+    {
+      id: 3,
       title: "ICS Next Build Corp",
       description:
-        "A comprehensive website for a construction company with dynamic content and management system.",
+        "A construction company website with dynamic content management, project portfolio, and admin dashboard for business operations.",
       status: "Completed",
       type: "Freelance",
       role: "Full Stack Developer",
@@ -82,10 +223,10 @@ const Projects = () => {
       link: "https://icsnextbuildcorp.com",
     },
     {
-      id: 2,
+      id: 4,
       title: "St. Gabrielle HRS",
       description:
-        "A comprehensive human resources solutions website with job listings, inquiry forms, and partner showcase for a recruitment firm.",
+        "A human resources solutions website featuring job listings, inquiry forms, and partner showcase for recruitment services.",
       status: "Completed",
       type: "Freelance",
       role: "Frontend Developer",
@@ -97,7 +238,7 @@ const Projects = () => {
         {
           title: "Wireframe Design",
           description:
-            "Created comprehensive wireframes and design mockups using Figma for the entire website structure and user flow.",
+            "Created wireframes and design mockups using Figma for the entire website structure and user flow.",
           icon: <ImageIcon size={30} />,
         },
         {

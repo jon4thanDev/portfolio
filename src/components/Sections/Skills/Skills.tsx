@@ -32,7 +32,14 @@ const Skills = () => {
   const getIconPath = (baseIcon: string) => {
     if (isLightTheme) return baseIcon;
 
-    const lightIcons = ["nextjs", "expressjs", "rest-api", "github", "aws"];
+    const lightIcons = [
+      "nextjs",
+      "expressjs",
+      "rest-api",
+      "github",
+      "aws",
+      "vercel",
+    ];
     const iconName = baseIcon.split("/").pop()?.replace(".svg", "");
 
     if (iconName && lightIcons.includes(iconName)) {
@@ -52,21 +59,34 @@ const Skills = () => {
     { name: "CSS3", icon: "/icons/css3.svg", category: "frontend" },
     { name: "SCSS", icon: "/icons/scss.svg", category: "frontend" },
     { name: "Tailwind", icon: "/icons/tailwind.svg", category: "frontend" },
+    { name: "Bootstrap", icon: "/icons/bootstrap.svg", category: "frontend" },
+    {
+      name: "React Bootstrap",
+      icon: "/icons/react-bootstrap.svg",
+      category: "frontend",
+    },
 
     // Backend
     { name: "Node.js", icon: "/icons/nodejs.svg", category: "backend" },
     { name: "Express.js", icon: "/icons/expressjs.svg", category: "backend" },
     { name: "Python", icon: "/icons/python.svg", category: "backend" },
     { name: "FastAPI", icon: "/icons/fastapi.svg", category: "backend" },
+    { name: "WebSockets", icon: "/icons/websocket.svg", category: "backend" },
     { name: "Redis", icon: "/icons/redis.svg", category: "backend" },
     { name: "REST API", icon: "/icons/rest-api.svg", category: "backend" },
 
     // Tools & Others
     { name: "Git", icon: "/icons/git.svg", category: "tools" },
     { name: "GitHub", icon: "/icons/github.svg", category: "tools" },
+    {
+      name: "Github Actions",
+      icon: "/icons/github-actions.svg",
+      category: "tools",
+    },
     { name: "Docker", icon: "/icons/docker.svg", category: "tools" },
     { name: "AWS", icon: "/icons/aws.svg", category: "tools" },
     { name: "Figma", icon: "/icons/figma.svg", category: "tools" },
+    { name: "Vercel", icon: "/icons/vercel.svg", category: "tools" },
   ];
 
   const filteredTechnologies =

@@ -8,13 +8,20 @@ const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    // Set initial theme
-    document.documentElement.setAttribute("data-theme", "dark");
+    // Get current theme from document attribute (set by layout script)
+    const currentTheme =
+      document.documentElement.getAttribute("data-theme") || "dark";
+    setIsDark(currentTheme === "dark");
   }, []);
 
   const toggleTheme = () => {
     const newTheme = isDark ? "light" : "dark";
     setIsDark(!isDark);
+
+    // Save to localStorage
+    localStorage.setItem("theme", newTheme);
+
+    // Apply theme
     document.documentElement.setAttribute("data-theme", newTheme);
   };
 
