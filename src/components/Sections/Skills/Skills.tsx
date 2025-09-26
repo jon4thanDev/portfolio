@@ -1,11 +1,53 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Skills.module.scss";
 import Image from "next/image";
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [isLightTheme, setIsLightTheme] = useState(false);
+  const [animatedElements, setAnimatedElements] = useState<Set<string>>(new Set());
+  
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
+  const techGridRef = useRef<HTMLDivElement>(null);
+  const additionalSkillsRef = useRef<HTMLDivElement>(null);
+
+  // Viewport animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const elementId = entry.target.getAttribute('data-animate-id');
+            if (elementId) {
+              setAnimatedElements(prev => new Set(prev).add(elementId));
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const refs = [titleRef, subtitleRef, filtersRef, techGridRef, additionalSkillsRef];
+    refs.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      refs.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, []);
 
   // Detect theme changes
   useEffect(() => {
@@ -105,19 +147,33 @@ const Skills = () => {
     <section id="skills" className={styles.skills}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Skills & Technologies</h2>
-          <p className={styles.subtitle}>
+          <h2 
+            ref={titleRef}
+            data-animate-id="title"
+            className={`${styles.title} ${animatedElements.has('title') ? styles.animate : ''}`}
+          >
+            Skills & Technologies
+          </h2>
+          <p 
+            ref={subtitleRef}
+            data-animate-id="subtitle"
+            className={`${styles.subtitle} ${animatedElements.has('subtitle') ? styles.animate : ''}`}
+          >
             Technologies and tools I work with daily
           </p>
         </div>
 
-        <div className={styles.categoryFilters}>
+        <div 
+          ref={filtersRef}
+          data-animate-id="filters"
+          className={`${styles.categoryFilters} ${animatedElements.has('filters') ? styles.animate : ''}`}
+        >
           {categories.map((category) => (
             <button
               key={category.id}
               className={`${styles.categoryButton} ${
                 activeCategory === category.id ? styles.active : ""
-              }`}
+              } ${animatedElements.has('filters') ? styles.animate : ''}`}
               onClick={() => setActiveCategory(category.id)}
             >
               {category.name}
@@ -125,9 +181,17 @@ const Skills = () => {
           ))}
         </div>
 
-        <div className={styles.techGrid}>
+        <div 
+          ref={techGridRef}
+          data-animate-id="techGrid"
+          className={`${styles.techGrid} ${animatedElements.has('techGrid') ? styles.animate : ''}`}
+        >
           {filteredTechnologies.map((tech, index) => (
-            <div key={index} className={styles.techItem}>
+            <div 
+              key={index} 
+              className={`${styles.techItem} ${animatedElements.has('techGrid') ? styles.animate : ''}`}
+              style={{ animationDelay: `${index * 0.05}s` }}
+            >
               {tech.icon.startsWith("/") ? (
                 <div className={styles.techIcon}>
                   <Image
@@ -145,17 +209,61 @@ const Skills = () => {
           ))}
         </div>
 
-        <div className={styles.additionalSkills}>
+        <div 
+          ref={additionalSkillsRef}
+          data-animate-id="additionalSkills"
+          className={`${styles.additionalSkills} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+        >
           <h3 className={styles.additionalTitle}>Additional Skills</h3>
           <div className={styles.skillsGrid}>
-            <div className={styles.skillTag}>Responsive Design</div>
-            <div className={styles.skillTag}>Performance Optimization</div>
-            <div className={styles.skillTag}>Agile Development</div>
-            <div className={styles.skillTag}>CI/CD</div>
-            <div className={styles.skillTag}>Testing</div>
-            <div className={styles.skillTag}>Code Review</div>
-            <div className={styles.skillTag}>Documentation</div>
-            <div className={styles.skillTag}>Team Collaboration</div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.1s' }}
+            >
+              Responsive Design
+            </div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.2s' }}
+            >
+              Performance Optimization
+            </div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.3s' }}
+            >
+              Agile Development
+            </div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.4s' }}
+            >
+              CI/CD
+            </div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.5s' }}
+            >
+              Testing
+            </div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.6s' }}
+            >
+              Code Review
+            </div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.7s' }}
+            >
+              Documentation
+            </div>
+            <div 
+              className={`${styles.skillTag} ${animatedElements.has('additionalSkills') ? styles.animate : ''}`}
+              style={{ animationDelay: '0.8s' }}
+            >
+              Team Collaboration
+            </div>
           </div>
         </div>
       </div>

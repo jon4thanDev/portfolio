@@ -26,7 +26,10 @@
   letter-spacing: -0.02em;
   line-height: 1.1;
   opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+
+  &.animate {
+    animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+  }
 
   @media (max-width: 768px) {
     font-size: var(--text-3xl);
@@ -43,7 +46,10 @@
   margin-right: auto;
   line-height: 1.7;
   opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+
+  &.animate {
+    animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+  }
 
   @media (max-width: 768px) {
     font-size: var(--text-base);
@@ -55,8 +61,11 @@
   grid-template-columns: 1fr 1fr;
   gap: var(--space-10);
   opacity: 0;
-  animation: fadeInUp 0.8s ease-out 0.6s forwards;
   padding-top: var(--space-10);
+
+  &.animate {
+    animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -65,6 +74,12 @@
 }
 
 .contactInfo {
+  opacity: 0;
+
+  &.animate {
+    animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+  }
+
   .infoTitle {
     font-size: var(--text-2xl);
     font-weight: 600;
@@ -159,6 +174,11 @@
   border: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
   transition: all var(--transition-normal);
+  opacity: 0;
+
+  &.animate {
+    animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+  }
 
   &:hover {
     box-shadow: var(--shadow-xl);

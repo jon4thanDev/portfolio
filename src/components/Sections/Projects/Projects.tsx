@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./Projects.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,6 +24,49 @@ import {
 
 const Projects = () => {
   const [activeProject, setActiveProject] = useState(0);
+  const [animatedElements, setAnimatedElements] = useState<Set<string>>(new Set());
+  
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const selectorRef = useRef<HTMLDivElement>(null);
+  const layoutRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const techStackRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const elementId = entry.target.getAttribute('data-animate-id');
+            if (elementId) {
+              setAnimatedElements(prev => new Set(prev).add(elementId));
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const refs = [titleRef, subtitleRef, selectorRef, layoutRef, cardRef, techStackRef, featuresRef];
+    refs.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      refs.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, []);
 
   const projects = [
     {
@@ -233,7 +276,7 @@ const Projects = () => {
       duration: "October 2023 - February 2024",
       image: "/projects/stgabriellehrs.jpg",
       icon: "👥",
-      technologies: ["Next.js", "React", "SCSS", "HTML", "JavaScript"],
+      technologies: ["Next.js", "React", "SCSS", "HTML", "JavaScript", "Figma"],
       features: [
         {
           title: "Wireframe Design",
@@ -283,19 +326,33 @@ const Projects = () => {
     <section id="projects" className={styles.projects}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2 className={styles.title}>My Projects</h2>
-          <p className={styles.subtitle}>
+          <h2 
+            ref={titleRef}
+            data-animate-id="title"
+            className={`${styles.title} ${animatedElements.has('title') ? styles.animate : ''}`}
+          >
+            My Projects
+          </h2>
+          <p 
+            ref={subtitleRef}
+            data-animate-id="subtitle"
+            className={`${styles.subtitle} ${animatedElements.has('subtitle') ? styles.animate : ''}`}
+          >
             Here are some of the projects I&apos;ve worked on recently
           </p>
         </div>
 
-        <div className={styles.projectSelector}>
+        <div 
+          ref={selectorRef}
+          data-animate-id="selector"
+          className={`${styles.projectSelector} ${animatedElements.has('selector') ? styles.animate : ''}`}
+        >
           {projects.map((project, index) => (
             <button
               key={project.id}
               className={`${styles.projectTab} ${
                 activeProject === index ? styles.active : ""
-              }`}
+              } ${animatedElements.has('selector') ? styles.animate : ''}`}
               onClick={() => setActiveProject(index)}
             >
               {project.title}
@@ -303,10 +360,19 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className={styles.projectLayout} key={activeProject}>
+        <div 
+          ref={layoutRef}
+          data-animate-id="layout"
+          className={`${styles.projectLayout} ${animatedElements.has('layout') ? styles.animate : ''}`} 
+          key={activeProject}
+        >
           {/* Left Column - Project Overview */}
           <div className={styles.leftColumn}>
-            <div className={styles.projectCard}>
+            <div 
+              ref={cardRef}
+              data-animate-id="card"
+              className={`${styles.projectCard} ${animatedElements.has('card') ? styles.animate : ''}`}
+            >
               {currentProject.image ? (
                 <div className={styles.projectImage}>
                   <Image
@@ -359,11 +425,19 @@ const Projects = () => {
               )}
             </div>
 
-            <div className={styles.techStack}>
+            <div 
+              ref={techStackRef}
+              data-animate-id="techStack"
+              className={`${styles.techStack} ${animatedElements.has('techStack') ? styles.animate : ''}`}
+            >
               <h4 className={styles.techTitle}>Tech Stack</h4>
               <div className={styles.techTags}>
                 {currentProject.technologies.map((tech, index) => (
-                  <span key={index} className={styles.techTag}>
+                  <span 
+                    key={index} 
+                    className={`${styles.techTag} ${animatedElements.has('techStack') ? styles.animate : ''}`}
+                    style={{ animationDelay: `${index * 0.05}s` }}
+                  >
                     {tech}
                   </span>
                 ))}
@@ -373,9 +447,17 @@ const Projects = () => {
 
           {/* Right Column - Features/Process */}
           <div className={styles.rightColumn}>
-            <div className={styles.featuresGrid}>
+            <div 
+              ref={featuresRef}
+              data-animate-id="features"
+              className={styles.featuresGrid}
+            >
               {currentProject.features.map((feature, index) => (
-                <div key={index} className={styles.featureCard}>
+                <div 
+                  key={index} 
+                  className={`${styles.featureCard} ${animatedElements.has('features') ? styles.animate : ''}`}
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                >
                   <div className={styles.featureIcon}>{feature.icon}</div>
                   <div>
                     <h5 className={styles.featureTitle}>{feature.title}</h5>

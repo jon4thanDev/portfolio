@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Contact.module.scss";
 import { AtSign, MapPin, Phone, Send } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
@@ -19,6 +19,48 @@ const Contact = () => {
     message: string;
     isVisible: boolean;
   }>({ type: "success", message: "", isVisible: false });
+  const [animatedElements, setAnimatedElements] = useState<Set<string>>(new Set());
+  
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const contactInfoRef = useRef<HTMLDivElement>(null);
+  const contactFormRef = useRef<HTMLDivElement>(null);
+
+  // Viewport animation observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const elementId = entry.target.getAttribute('data-animate-id');
+            if (elementId) {
+              setAnimatedElements(prev => new Set(prev).add(elementId));
+            }
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    const refs = [titleRef, subtitleRef, contentRef, contactInfoRef, contactFormRef];
+    refs.forEach(ref => {
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => {
+      refs.forEach(ref => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      });
+    };
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -96,13 +138,31 @@ const Contact = () => {
     <>
       <section id="contact" className={styles.contact}>
         <div className={styles.container}>
-          <h2 className={styles.title}>Let&apos;s Connect</h2>
-          <p className={styles.subtitle}>
+          <h2 
+            ref={titleRef}
+            data-animate-id="title"
+            className={`${styles.title} ${animatedElements.has('title') ? styles.animate : ''}`}
+          >
+            Let&apos;s Connect
+          </h2>
+          <p 
+            ref={subtitleRef}
+            data-animate-id="subtitle"
+            className={`${styles.subtitle} ${animatedElements.has('subtitle') ? styles.animate : ''}`}
+          >
             Open to new opportunities and exciting full-time roles
           </p>
 
-          <div className={styles.content}>
-            <div className={styles.contactInfo}>
+          <div 
+            ref={contentRef}
+            data-animate-id="content"
+            className={`${styles.content} ${animatedElements.has('content') ? styles.animate : ''}`}
+          >
+            <div 
+              ref={contactInfoRef}
+              data-animate-id="contactInfo"
+              className={`${styles.contactInfo} ${animatedElements.has('contactInfo') ? styles.animate : ''}`}
+            >
               <h3 className={styles.infoTitle}>Contact Information</h3>
               <p className={styles.infoDescription}>
                 Feel free to reach out if you&apos;re looking for a developer,
@@ -161,7 +221,11 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className={styles.contactForm}>
+            <div 
+              ref={contactFormRef}
+              data-animate-id="contactForm"
+              className={`${styles.contactForm} ${animatedElements.has('contactForm') ? styles.animate : ''}`}
+            >
               <form onSubmit={handleSubmit} className={styles.form}>
                 <div className={styles.formGroup}>
                   <label htmlFor="name" className={styles.label}>
