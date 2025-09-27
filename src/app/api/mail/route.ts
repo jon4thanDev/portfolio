@@ -217,7 +217,7 @@ export async function POST(request: NextRequest) {
           
           <div class="footer">
             <p>This message was sent from your portfolio contact form</p>
-            <div class="timestamp">Received: ${new Date().toLocaleString()}</div>
+            <div class="timestamp">Received: ${new Date().toLocaleString("en-US", { timeZone: "Asia/Manila" })}</div>
           </div>
         </div>
       </body>

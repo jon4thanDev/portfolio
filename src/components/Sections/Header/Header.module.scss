@@ -160,7 +160,7 @@
   &.menuButtonOpen {
     span {
       &:first-child {
-        transform: rotate(45deg) translate(7px, 7px);
+        transform: rotate(44deg) translate(7px, 8px);
       }
 
       &:nth-child(2) {
@@ -168,7 +168,7 @@
       }
 
       &:last-child {
-        transform: rotate(-45deg) translate(7px, -7px);
+        transform: rotate(-44deg) translate(7px, -8px);
       }
     }
   }

@@ -79,7 +79,7 @@ const Footer = () => {
 
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © 2025 Jonathan Jamer. All rights reserved.
+            © 2025 TanDev. All rights reserved.
           </p>
         </div>
       </div>

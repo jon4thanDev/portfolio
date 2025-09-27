@@ -68,6 +68,19 @@ const Projects = () => {
     };
   }, []);
 
+  // Trigger animations for project details when project changes and selector is already visible
+  useEffect(() => {
+    if (animatedElements.has('selector')) {
+      // If the selector is already visible, trigger animations for project details
+      const projectDetailIds = ['layout', 'card', 'techStack', 'features'];
+      setAnimatedElements(prev => {
+        const newSet = new Set(prev);
+        projectDetailIds.forEach(id => newSet.add(id));
+        return newSet;
+      });
+    }
+  }, [activeProject]);
+
   const projects = [
     {
       id: 1,
