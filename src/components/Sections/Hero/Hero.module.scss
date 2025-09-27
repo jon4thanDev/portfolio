@@ -440,3 +440,10 @@
     font-size: var(--text-xl);
   }
 }
+
+
+@media (max-width: 584px) {
+  .experience {
+    font-size: 18px;
+  }
+}
