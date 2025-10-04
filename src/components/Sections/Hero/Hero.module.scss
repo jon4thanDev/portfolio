@@ -371,6 +371,32 @@
   }
 }
 
+@media (max-width: 480px) {
+  .greetingLine {
+    font-size: var(--text-lg);
+  }
+
+  .roleHighlight {
+    font-size: 2.5rem;
+  }
+
+  .roleSubtitle {
+    font-size: var(--text-base);
+  }
+
+  .nameText {
+    font-size: var(--text-lg);
+  }
+
+  .experience {
+    font-size: var(--text-base);
+  }
+
+  .statNumber {
+    font-size: var(--text-xl);
+  }
+}
+
 // Responsive design
 @media (max-width: 768px) {
   .hero {
@@ -415,31 +441,7 @@
   }
 }
 
-@media (max-width: 480px) {
-  .greetingLine {
-    font-size: var(--text-lg);
-  }
 
-  .roleHighlight {
-    font-size: 2.5rem;
-  }
-
-  .roleSubtitle {
-    font-size: var(--text-base);
-  }
-
-  .nameText {
-    font-size: var(--text-lg);
-  }
-
-  .experience {
-    font-size: var(--text-lg);
-  }
-
-  .statNumber {
-    font-size: var(--text-xl);
-  }
-}
 
 
 @media (max-width: 584px) {

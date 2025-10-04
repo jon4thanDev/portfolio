@@ -51,7 +51,7 @@ const Footer = () => {
             <h4 className={styles.sectionTitle}>Connect</h4>
             <ul className={styles.links}>
               <li>
-                <a href="#" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/jon4thanDev" target="_blank" rel="noopener noreferrer">
                   GitHub
                 </a>
               </li>

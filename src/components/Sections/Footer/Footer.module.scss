@@ -16,13 +16,11 @@
   grid-template-columns: 2fr 1fr 1fr;
   gap: var(--space-8);
   margin-bottom: var(--space-8);
-  height: 25vh;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: var(--space-6);
     text-align: center;
-    height: fit-content;
   }
 }
 
